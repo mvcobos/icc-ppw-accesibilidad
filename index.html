@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo de Accesibilidad Web (A11y)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Accesibilidad Web (A11y)</h1>
+      <p class="subtitle">
+        Página de demostración práctica con buenas prácticas de accesibilidad.
+      </p>
+
+      <nav aria-label="Navegación principal" class="main-nav">
+        <ul>
+          <li><a href="#imagenes">Imágenes accesibles</a></li>
+          <li><a href="#formulario">Formulario accesible</a></li>
+          <li><a href="#teclado">Navegación con teclado</a></li>
+          <li><a href="#aria">Componentes con ARIA</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido" class="container">
+    <section class="card" aria-labelledby="intro-title">
+      <h2 id="intro-title">¿Qué demuestra esta página?</h2>
+      <p>
+        Esta página fue creada para mostrar cómo una web puede ser más inclusiva
+        para personas que usan teclado, lector de pantalla o necesitan una interfaz clara.
+      </p>
+      <p>
+        Aquí se aplican prácticas como textos alternativos en imágenes, formularios con etiquetas,
+        foco visible, navegación sin mouse y atributos ARIA para mejorar la interacción.
+      </p>
+    </section>
+
+    <section id="imagenes" class="card" aria-labelledby="imagenes-title">
+      <h2 id="imagenes-title">1. Uso correcto de alt en imágenes</h2>
+      <p>
+        Las imágenes deben incluir un texto alternativo que describa su contenido o función.
+        Esto ayuda a los lectores de pantalla y a usuarios que no pueden ver la imagen.
+      </p>
+
+      <div class="gallery">
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+            alt="Persona usando una computadora portátil mientras navega por una página web"
+          >
+          <figcaption>Imagen con descripción útil en el atributo alt.</figcaption>
+        </figure>
+
+        <figure>
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80"
+            alt="Código HTML y CSS mostrado en la pantalla de un computador"
+          >
+          <figcaption>La descripción explica el contenido visual de la imagen.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="formulario" class="card" aria-labelledby="formulario-title">
+      <h2 id="formulario-title">2. Formulario accesible con label</h2>
+      <p>
+        Cada campo del formulario tiene una etiqueta asociada. Así, el usuario entiende
+        qué información debe ingresar y puede interactuar mejor con tecnologías de apoyo.
+      </p>
+
+      <form class="accessible-form" action="#" method="post">
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre"
+            required
+            aria-describedby="ayuda-nombre"
+          >
+          <small id="ayuda-nombre">Ingresa tu nombre y apellido.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="ejemplo@correo.com"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="tema">Tema de interés</label>
+          <select id="tema" name="tema">
+            <option value="alt">Texto alternativo en imágenes</option>
+            <option value="formularios">Formularios accesibles</option>
+            <option value="teclado">Navegación por teclado</option>
+            <option value="aria">ARIA</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="5"
+            placeholder="Escribe tu mensaje aquí"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn">Enviar formulario</button>
+      </form>
+    </section>
+
+    <section id="teclado" class="card" aria-labelledby="teclado-title">
+      <h2 id="teclado-title">3. Navegación funcional solo con teclado</h2>
+      <p>
+        En esta página puedes moverte usando la tecla <strong>Tab</strong>, activar botones con
+        <strong>Enter</strong> o <strong>Espacio</strong>, y regresar con <strong>Shift + Tab</strong>.
+      </p>
+      <p>
+        Además, todos los elementos interactivos muestran un foco visible para que el usuario sepa
+        dónde está posicionado.
+      </p>
+
+      <div class="keyboard-demo">
+        <a href="#formulario" class="btn-link">Ir al formulario</a>
+        <button type="button" class="btn-secondary">Botón accesible</button>
+        <a href="#aria" class="btn-link">Ir a componente ARIA</a>
+      </div>
+    </section>
+
+    <section id="aria" class="card" aria-labelledby="aria-title">
+      <h2 id="aria-title">4. Uso de atributos ARIA</h2>
+      <p>
+        Los atributos ARIA ayudan a describir mejor algunos componentes para lectores de pantalla,
+        especialmente cuando hay interacción dinámica.
+      </p>
+
+      <div class="accordion">
+        <button
+          class="accordion-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="panel-info"
+          id="accordion-trigger"
+        >
+          Mostrar información adicional sobre ARIA
+        </button>
+
+        <div
+          id="panel-info"
+          class="accordion-panel"
+          role="region"
+          aria-labelledby="accordion-trigger"
+          hidden
+        >
+          <p>
+            En este botón se usa <strong>aria-expanded</strong> para indicar si el contenido está
+            abierto o cerrado. También se usa <strong>aria-controls</strong> para relacionar el botón
+            con el panel que controla.
+          </p>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <label for="busqueda">Búsqueda del sitio</label>
+        <input
+          type="search"
+          id="busqueda"
+          name="busqueda"
+          placeholder="Buscar contenido"
+          aria-label="Buscar contenido del sitio"
+        >
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Demo de Accesibilidad Web (A11y) para exposición académica.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const accordionButton = document.querySelector('.accordion-button');
+    const accordionPanel = document.querySelector('.accordion-panel');
+
+    accordionButton.addEventListener('click', () => {
+      const expanded = accordionButton.getAttribute('aria-expanded') === 'true';
+      accordionButton.setAttribute('aria-expanded', String(!expanded));
+      accordionPanel.hidden = expanded;
+    });
+  </script>
+</body>
+</html>
